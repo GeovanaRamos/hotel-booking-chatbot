@@ -1,0 +1,299 @@
+version: "3.1"
+
+stories:
+
+- story: Ask to adjust reservation
+  steps:
+  - user: |
+      hi
+    intent: init_chat 
+  - action: utter_welcome
+  - action: utter_check_in
+  - user: |
+      check in on 7/12/2023
+    intent: inform_date
+  - action: action_set_check_in
+  - action: utter_check_out
+  - user: |
+      7/24/2023
+    intent: inform_date
+  - action: action_set_check_out
+  - action: utter_adults
+  - user: |
+      3 adults
+    intent: inform_number 
+  - action: action_set_adults
+  - action: utter_children
+  - user: |
+      5 children
+    intent: inform_number
+  - action: action_set_children
+  - action: utter_rooms
+  - user: |
+      2 rooms
+    intent: inform_number
+  - action: action_set_rooms
+  - action: utter_calling_manager
+  - action: action_call_manager
+  - slot_was_set:
+    - vacancy: false #
+  - action: utter_adjust
+  - user: |
+      8/12/2023
+    intent: inform_date
+  - action: action_set_check_in
+  - action: utter_check_out
+  - user: |
+      check out on 8/24/2023
+    intent: inform_date
+  - action: action_set_check_out
+  - action: utter_adults
+
+
+- story: Give up when there are rooms available
+  steps:
+  - user: |
+      hi
+    intent: init_chat 
+  - action: utter_welcome
+  - action: utter_check_in
+  - user: |
+      7/12/2023
+    intent: inform_date
+  - action: action_set_check_in
+  - action: utter_check_out
+  - user: |
+      7/24/2023
+    intent: inform_date
+  - action: action_set_check_out
+  - action: utter_adults
+  - user: |
+      3 adults
+    intent: inform_number 
+  - action: action_set_adults
+  - action: utter_children
+  - user: |
+      5 children
+    intent: inform_number
+  - action: action_set_children
+  - action: utter_rooms
+  - user: |
+      2 rooms
+    intent: inform_number
+  - action: action_set_rooms
+  - action: utter_calling_manager
+  - action: action_call_manager
+  - slot_was_set:
+    - vacancy: true #
+  - action: utter_vacancy 
+  - user: |
+      no 
+    intent: deny #
+  - action: utter_ok
+  - action: utter_goodbye
+
+
+- story: Proceed with reservation (1 adults and 0 children)
+  steps:
+  - user: |
+      hi
+    intent: init_chat 
+  - action: utter_welcome
+  - action: utter_check_in
+  - user: |
+      7/12/2023
+    intent: inform_date
+  - action: action_set_check_in
+  - action: utter_check_out
+  - user: |
+      7/24/2023
+    intent: inform_date
+  - action: action_set_check_out
+  - action: utter_adults
+  - user: |
+      2 adults
+    intent: inform_number 
+  - action: action_set_adults
+  - action: utter_children
+  - user: |
+      0 children
+    intent: inform_number
+  - action: action_set_children
+  - action: utter_rooms
+  - user: |
+      1 rooms
+    intent: inform_number
+  - action: action_set_rooms
+  - action: utter_calling_manager
+  - action: action_call_manager
+  - slot_was_set:
+    - vacancy: true #
+  - action: utter_vacancy 
+  - user: |
+      sure 
+    intent: affirm #
+  - action: utter_guests_data
+  - action: guests_form
+  - active_loop: guests_form
+  - active_loop: null
+  - slot_was_set:
+      - requested_slot: null          
+  - action: action_check_guests # first adult read
+  - slot_was_set:
+    - continue_guests: false
+  - action: utter_done
+  - action: action_utter_reservation_info
+  - action: action_restart
+
+
+- story: Proceed with reservation (2 adults and 0 children)
+  steps:
+  - user: |
+      hi
+    intent: init_chat 
+  - action: utter_welcome
+  - action: utter_check_in
+  - user: |
+      7/12/2023
+    intent: inform_date
+  - action: action_set_check_in
+  - action: utter_check_out
+  - user: |
+      7/24/2023
+    intent: inform_date
+  - action: action_set_check_out
+  - action: utter_adults
+  - user: |
+      2 adults
+    intent: inform_number 
+  - action: action_set_adults
+  - action: utter_children
+  - user: |
+      0 children
+    intent: inform_number
+  - action: action_set_children
+  - action: utter_rooms
+  - user: |
+      1 rooms
+    intent: inform_number
+  - action: action_set_rooms
+  - action: utter_calling_manager
+  - action: action_call_manager
+  - slot_was_set:
+    - vacancy: true #
+  - action: utter_vacancy 
+  - user: |
+      sure 
+    intent: affirm #
+  - action: utter_guests_data
+  - action: guests_form
+  - active_loop: guests_form
+  - active_loop: null
+  - slot_was_set:
+      - requested_slot: null          
+  - action: action_check_guests # first adult read
+  - slot_was_set:
+    - continue_guests: true
+  - action: guests_form
+  - active_loop: guests_form
+  - active_loop: null
+  - slot_was_set:
+      - requested_slot: null          
+  - action: action_check_guests # second adult read
+  - slot_was_set:
+    - continue_guests: false
+  - action: utter_done
+  - action: action_utter_reservation_info
+  - action: action_restart
+
+- story: Proceed with reservation (3 adults and 2 children)
+  steps:
+  - user: |
+      hi
+    intent: init_chat 
+  - action: utter_welcome
+  - action: utter_check_in
+  - user: |
+      7/12/2023
+    intent: inform_date
+  - action: action_set_check_in
+  - action: utter_check_out
+  - user: |
+      7/24/2023
+    intent: inform_date
+  - action: action_set_check_out
+  - action: utter_adults
+  - user: |
+      3 adults
+    intent: inform_number 
+  - action: action_set_adults
+  - action: utter_children
+  - user: |
+      2 children
+    intent: inform_number
+  - action: action_set_children
+  - action: utter_rooms
+  - user: |
+      1 rooms
+    intent: inform_number
+  - action: action_set_rooms
+  - action: utter_calling_manager
+  - action: action_call_manager
+  - slot_was_set:
+    - vacancy: true #
+  - action: utter_vacancy 
+  - user: |
+      sure 
+    intent: affirm #
+  - action: utter_guests_data
+  - action: guests_form
+  - active_loop: guests_form
+  - active_loop: null
+  - slot_was_set:
+      - requested_slot: null          
+  - action: action_check_guests # first adult read
+  - slot_was_set:
+    - continue_guests: true
+  - action: guests_form
+  - active_loop: guests_form
+  - active_loop: null
+  - slot_was_set:
+      - requested_slot: null                  
+  - action: action_check_guests # second adult read
+  - slot_was_set:
+    - continue_guests: true
+  - action: guests_form
+  - active_loop: guests_form
+  - user: |
+      2
+    intent: inform_number # only to avoid "circuit breaker tripped"
+  - action: guests_form
+  - active_loop: null
+  - slot_was_set:
+      - requested_slot: null                  
+  - action: action_check_guests # third adult read
+  - slot_was_set:
+    - continue_guests: true
+  - action: guests_form
+  - active_loop: guests_form
+  - user: |
+      2
+    intent: inform_number # only to avoid "circuit breaker tripped"
+  - action: guests_form
+  - active_loop: null
+  - slot_was_set:
+      - requested_slot: null          
+  - action: action_check_guests # first child read
+  - slot_was_set:
+    - continue_guests: true
+  - action: guests_form
+  - active_loop: guests_form
+  - active_loop: null
+  - slot_was_set:
+      - requested_slot: null          
+  - action: action_check_guests # second child read
+  - slot_was_set:
+    - continue_guests: false
+  - action: utter_done
+  - action: action_utter_reservation_info
+  - action: action_restart

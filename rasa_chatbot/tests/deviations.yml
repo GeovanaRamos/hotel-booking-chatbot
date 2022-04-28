@@ -1,0 +1,222 @@
+version: "3.1"
+
+stories:
+
+- story: start with FAQ then reservation info happens
+  steps:
+  - user: |             
+      how are you   
+    intent: faq/ask_how_doing              # deviation
+  - action: utter_faq                      # deviation
+  - user: |             
+      what is your name       
+    intent: faq/ask_who_is_it              # deviation
+  - action: utter_faq                      # deviation
+  - user: |
+      hi
+    intent: init_chat 
+  - action: utter_welcome
+  - action: utter_check_in
+
+
+- story: FAQ during reservation info and then ask to adjust
+  steps:
+  - user: |
+      hi
+    intent: init_chat 
+  - action: utter_welcome
+  - action: utter_check_in
+  - user: |             
+      where is the hotel located          
+    intent: faq/ask_where_is_hotel         # deviation
+  - action: utter_faq                      # deviation
+  - user: |
+      check in on 7/12/2023
+    intent: inform_date
+  - action: action_set_check_in
+  - action: utter_check_out
+  - user: |             
+      what is your name       
+    intent: faq/ask_who_is_it              # deviation
+  - action: utter_faq                      # deviation
+  - user: |
+      check in on 7/12/2023
+    intent: inform_date
+  - action: action_set_check_in
+  - action: utter_check_out
+  - user: |
+      7/24/2023
+    intent: inform_date
+  - action: action_set_check_out
+  - action: utter_adults
+  - user: |
+      3 adults
+    intent: inform_number 
+  - action: action_set_adults
+  - action: utter_children
+  - user: |
+      5 children
+    intent: inform_number
+  - action: action_set_children
+  - action: utter_rooms
+  - user: |
+      2 rooms
+    intent: inform_number
+  - action: action_set_rooms
+  - action: utter_calling_manager
+  - action: action_call_manager
+  - slot_was_set:
+    - vacancy: false #
+  - action: utter_adjust
+  - user: |             
+      what is the room price      
+    intent: faq/ask_room_rate              # deviation
+  - action: utter_faq                      # deviation
+  - user: |
+      8/12/2023
+    intent: inform_date
+  - action: action_set_check_in
+  - action: utter_check_out
+  - user: |
+      check out on 8/24/2023
+    intent: inform_date
+  - action: action_set_check_out
+  - action: utter_adults
+
+
+
+- story: Proceed with reservation (1 adult and 1 child) + FAQ deviations
+  steps:
+  - user: |
+      hi
+    intent: init_chat 
+  - action: utter_welcome
+  - action: utter_check_in
+  - user: |
+      7/12/2023
+    intent: inform_date
+  - action: action_set_check_in
+  - action: utter_check_out
+  - user: |
+      7/24/2023
+    intent: inform_date
+  - action: action_set_check_out
+  - action: utter_adults
+  - user: |
+      2 adults
+    intent: inform_number 
+  - action: action_set_adults
+  - action: utter_children
+  - user: |
+      0 children
+    intent: inform_number
+  - action: action_set_children
+  - action: utter_rooms
+  - user: |
+      1 rooms
+    intent: inform_number
+  - action: action_set_rooms
+  - action: utter_calling_manager
+  - action: action_call_manager
+  - slot_was_set:
+    - vacancy: true #
+  - action: utter_vacancy 
+  - user: |
+      sure 
+    intent: affirm #
+  - action: utter_guests_data
+  - action: guests_form
+  - active_loop: guests_form
+  - user: |             
+      what type of rooms the hotel has      
+    intent: faq/ask_room_types             # deviation
+  - action: utter_faq                      # deviation
+  - action: guests_form
+  - active_loop: null
+  - slot_was_set:
+      - requested_slot: null          
+  - action: action_check_guests # first adult read
+  - slot_was_set:
+    - continue_guests: true
+  - action: guests_form
+  - active_loop: guests_form
+  - user: |             
+      how many guests in a room    
+    intent: faq/ask_guests_in_room         # deviation
+  - action: utter_faq                      # deviation
+  - action: guests_form
+  - active_loop: null
+  - slot_was_set:
+      - requested_slot: null          
+  - action: action_check_guests # first child read
+  - slot_was_set:
+    - continue_guests: false
+  - action: utter_done
+  - action: action_utter_reservation_info
+  - action: action_restart
+
+
+- story: Reservation (1 adults and 0 children) then faq 
+  steps:
+  - user: |
+      hi
+    intent: init_chat 
+  - action: utter_welcome
+  - action: utter_check_in
+  - user: |
+      7/12/2023
+    intent: inform_date
+  - action: action_set_check_in
+  - action: utter_check_out
+  - user: |
+      7/24/2023
+    intent: inform_date
+  - action: action_set_check_out
+  - action: utter_adults
+  - user: |
+      2 adults
+    intent: inform_number 
+  - action: action_set_adults
+  - action: utter_children
+  - user: |
+      0 children
+    intent: inform_number
+  - action: action_set_children
+  - action: utter_rooms
+  - user: |
+      1 rooms
+    intent: inform_number
+  - action: action_set_rooms
+  - action: utter_calling_manager
+  - action: action_call_manager
+  - slot_was_set:
+    - vacancy: true #
+  - action: utter_vacancy 
+  - user: |
+      sure 
+    intent: affirm #
+  - action: utter_guests_data
+  - action: guests_form
+  - active_loop: guests_form
+  - active_loop: null
+  - slot_was_set:
+      - requested_slot: null          
+  - action: action_check_guests # first adult read
+  - slot_was_set:
+    - continue_guests: false
+  - action: utter_done
+  - action: action_utter_reservation_info
+  - action: action_restart
+  - user: |             
+      how are you   
+    intent: faq/ask_how_doing              # deviation
+  - action: utter_faq                      # deviation
+  - user: |             
+      what is your name       
+    intent: faq/ask_who_is_it              # deviation
+  - action: utter_faq                      # deviation
+  - user: |
+      hi
+    intent: init_chat 
+  - action: utter_welcome
+  - action: utter_check_in

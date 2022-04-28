@@ -1,0 +1,93 @@
+version: "3.1"
+
+nlu:
+- intent: faq/ask_who_is_it
+  examples: |
+    - who are you
+    - who the hell are you?
+    - who are you?
+    - who are u
+    - who r u
+    - who is this
+    - tell me who you are
+    - what is your name
+    - hi what is your name?
+    - what is your name?
+    - what are you?
+    - hey are you human
+    - are u human
+    - r u a human
+    - are you real human?
+    - you are a human
+    - Rara, are you a human?
+    - you are bot or human?
+    - are you human
+
+- intent: faq/ask_can_you_help
+  examples: |
+    - Can you help me?
+    - Could you please show me what you can
+    - How can you help me
+    - How you help me?
+    - I need help
+    - I need some help
+    - What are my options
+    - What are you able to do?
+    - What can I ask you?
+    - What can you do
+    - What can you do for me?
+    - What do you do
+    - are there any other options?
+    - can I ask you anything else?
+    - can you do anything else?
+
+- intent: faq/ask_how_doing
+  examples: |
+    - Are you ok?
+    - Do you feel good?
+    - Do you have a great day?
+    - what are you up to?
+    - How are You?
+    - How are things?
+    - How is it going 
+    - howdy mate
+
+- intent: faq/ask_where_is_hotel
+  examples: |
+    - where is the hotel located
+    - what's the address of the hotel 
+    - how can i get to the hotel 
+    - can you show me the location of the hotel 
+    - what's the hotel's address 
+    - show me hotel localization 
+
+- intent: faq/ask_guests_in_room
+  examples: |
+    - how many guests in a room 
+    - the room can receive how many guests 
+    - the room can receive my whole family 
+    - how many people can use a room 
+    - the bedroom is for how many people 
+    - how many beds there are in a room
+    - number of beds
+
+- intent: faq/ask_room_rate
+  examples: |
+    - how much does it cost per night
+    - what's the price for a room 
+    - what's the night rate 
+    - what's the room rate 
+    - prices 
+    - room rate 
+
+- intent: faq/ask_room_types 
+  examples: |
+    - what types of rooms the hotel has 
+    - room types 
+    - what rooms are like 
+    - describe the acoomodations for me 
+    - what are rooms like 
+    - room facilities 
+    - do you have deluxe rooms 
+    - do you have suites 
+    - tell the types of rooms

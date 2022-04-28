@@ -1,0 +1,158 @@
+version: "3.1"
+
+intents:
+  - init_chat
+  - inform_date
+  - inform_number
+  - deny
+  - affirm
+  - faq 
+
+entities:
+- date: 
+    influence_conversation: false
+- number:
+    influence_conversation: false
+
+slots:
+# for reservation info
+  check_in: 
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: custom
+  check_out: 
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: custom
+  n_adults: 
+    type: float
+    min_value: 1
+    max_value: 4
+    influence_conversation: false
+    mappings:
+    - type: custom
+  n_children: 
+    type: float
+    min_value: 0
+    max_value: 6
+    influence_conversation: false
+    mappings:
+    - type: custom
+  n_rooms: 
+    type: float
+    min_value: 1
+    max_value: 4
+    influence_conversation: false
+    mappings:
+    - type: custom
+# for guests form
+  guest_name: 
+    type: text 
+    influence_conversation: false 
+    mappings:
+    - type: from_text
+      intent: 
+      conditions:
+      - active_loop: guests_form
+        requested_slot: guest_name
+  guest_id:
+    type: float 
+    influence_conversation: false 
+    mappings:
+    - type: from_text
+      intent: 
+      conditions:
+      - active_loop: guests_form
+        requested_slot: guest_id
+      not_intent: faq
+  guest_age:
+    type: float
+    influence_conversation: false 
+    mappings:
+    - type: from_text
+      intent: 
+      conditions:
+      - active_loop: guests_form
+        requested_slot: guest_age
+      not_intent: faq
+# for storage
+  names_list: 
+    type: list 
+    initial_value: []
+    influence_conversation: false 
+    mappings:
+    - type: custom
+  ids_list:
+    type: list 
+    initial_value: []
+    influence_conversation: false 
+    mappings:
+    - type: custom
+  ages_list:
+    type: list 
+    initial_value: []
+    influence_conversation: false 
+    mappings:
+    - type: custom
+# for business logic
+  vacancy: 
+    type: bool 
+    influence_conversation: true 
+    mappings:
+    - type: custom
+  a_read:
+    type: float 
+    initial_value: 0
+    influence_conversation: false 
+    mappings:
+    - type: custom
+  c_read:
+    type: float 
+    initial_value: 0
+    influence_conversation: false 
+    mappings:
+    - type: custom
+  continue_guests:
+    type: bool 
+    influence_conversation: true 
+    mappings:
+    - type: custom
+# for personalizing responses
+  guest_type:
+    type: text 
+    influence_conversation: false 
+    initial_value: "adult"
+    mappings:
+    - type: custom
+  guest_number:
+    type: float 
+    initial_value: 1
+    influence_conversation: false 
+    mappings:
+    - type: custom
+
+actions:
+ - action_set_check_in
+ - action_set_check_out
+ - action_set_adults
+ - action_set_children 
+ - action_set_rooms
+ - action_call_manager
+ - action_check_guests
+ - validate_guests_form
+ - action_utter_reservation_info
+
+forms:
+  guests_form:
+    required_slots:
+      - guest_name
+      - guest_id
+      - guest_age
+
+
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
