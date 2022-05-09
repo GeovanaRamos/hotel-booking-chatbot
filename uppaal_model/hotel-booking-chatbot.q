@@ -44,7 +44,7 @@ A[] dm.proceed imply vacancy
 /*
 Whether the rooms manager is verifying for room availability, eventually the chatbot will ask if it can proceed with the reservation or ask the user to adjust the reservation data.
 */
-rm.verifying --> (dm.proceed || dm.adjust)
+rm.verification--> (dm.proceed || dm.adjust)
 
 /*
 Always the fact that the chatbot finished the reservation implies that the user informed between 1 and 4 rooms.
