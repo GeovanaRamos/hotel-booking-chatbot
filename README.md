@@ -3,7 +3,7 @@
 
 ## Description
 
-This repository contains files for replicating research done in the paper *An Approach to Formal Verification of Chatbot Conversational Flows With Model Checking*.
+This repository contains files for replicating research done in the paper *Modeling Strategies for the Verification of Chatbot Conversational Flows via Model Checking*.
 
 ## Repository Organization
 
