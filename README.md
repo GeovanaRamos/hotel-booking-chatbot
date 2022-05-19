@@ -7,6 +7,8 @@ This repository contains files for replicating research done in the paper *An Ap
 
 ## Repository Organization
 
+**./experiment:** contains interview transcripts and models generated in the experiment. 
+
 **./uppaal_base:** contains base files for modeling chatbots in Uppaal. 
 
 **./uppaal_model:** contains files for the hotel booking chatbot modeled in Uppaal that initially verified the proposed requirements. 

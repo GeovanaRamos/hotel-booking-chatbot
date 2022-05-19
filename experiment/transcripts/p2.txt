@@ -1,0 +1,63 @@
+Speaker1: Você aceitou ser gravado nessa entrevista?
+
+Speaker2: Sim.
+
+Speaker1: Você está ciente que sua participação é voluntária e anônima e os resultados dessa pesquisa poderão ser amplamente divulgados em meios eletrônicos ou impressos?
+
+Speaker2: Sim.
+
+Speaker1: Qual seu nível de formação.
+
+Speaker2: Graduação completa em engenharia de software.
+
+Speaker1: E o que é que você faz hoje em dia, sua atividade principal?
+
+Speaker2: Atualmente eu sou engenheiro de software em uma empresa privada.
+
+Speaker1: E quanto tempo? Qual seu tempo de experiência com o desenvolvimento de software? Desde o primeiro contato.
+
+Speaker2: Que tive meu primeiro contato, em 2016, então são seis anos.
+
+Speaker1:Você considera que sua experiência e seus conhecimentos sobre chatbots sejam básicos, intermediários ou avançados? 
+
+Speaker2: Intermediário 
+
+Speaker2: E em relação ao framework Rasa, conhecimento básico, intermediário ou avançado?
+
+Speaker2: Intermediário também.
+
+Speaker1: Fala um pouco como é que foi sua experiência com desenvolvimento de chatbots? Quais projetos você participou?
+
+Speaker2: Ok. Então, eu participei durante um estágio em um laboratório que eu desenvolvi chatbots para o [agência do governo] que era associado [uma lei]. Então eu utilizava o framework para desenvolver esse chatbot e também eu implementei um outro chatbot nesse mesmo laboratório que era responsável por fazer o crawling de projetos de lei associado a [um assunto] e fazer notificações em canais usando o chatbot. Então a minha experiência foi essa durante um ano no laboratório.
+
+Speaker1: Legal. Você já conhecia o UPPAAL ou a técnica de model checking?
+
+Speaker2: Não conhecia.
+
+Speaker1: Fala um pouco como foi a experiência de fazer esse modelo UPPAAL para o chatbot de co-working, abordando tanto dificuldades ou o que você viu de positivo no processo.
+
+Speaker2: Então, eu não conhecia o UPPAAL, como eu já acho que eu já havia falado. E para quem já tem algum conhecimento, acho que como eu, intermediário, alguns termos do léxico aqui já são conhecidos como intent e responses. Então, para uma pessoa que já tem alguma certa experiência, é ok. Sobre a interface, ela não é a mais amigável para uma pessoa que não é da área de software, mas se o foco for para um desenvolvedor, acredito que dá para ele ir conseguindo fazer de acordo com o vídeo que também foi disponibilizado e ajudando a fazer tudo isso. Mas assim, pra uma experiência de uma pessoa que nunca mexeu e talvez que não seja da área, seja um pouco difícil. Mas eu acredito que é o intuito dessa ferramenta [seja] para desenvolvedores de chatbot da área de tecnologia, então poderia ter uma curva de aprendizado, mas acredito que seria razoavelmente curta. Então acredito que seria bom, uma boa ferramenta para ser utilizada.
+
+Speaker1: Beleza. Foi muito difícil para você compreender o modelo que foi fornecido de reserva de hotel e, caso você tenha compreendido esse modelo, você acha que ele está adequado, assim como o chatbot resultante que foi apresentado para você no framework Rasa.
+
+Speaker2: Eu acredito que o modelo está consideravelmente bem explicado. Também teve um vídeo na etapa anterior que ajudava a gente a entender e como eu já tinha trabalhado anteriormente com chatbot, eu consegui entender bem o modelo do hotel e salas de reservas. E em relação ao Rasa, eu também já tinha trabalhado anteriormente. E por essas semelhanças de léxico, intent e response, eu acredito que ele realmente está correspondendo, tanto o do Rasa como o do UPPAAL. Então eles são correspondentes.
+
+Speaker1: E em relação a essa proposta toda, tanto a utilização do UPPAAL quanto os modelos básicos, você acha que eles podem ser aliados no processo de desenvolvimento de chatbots?
+
+Speaker2: Sim, acredito que depende do usuário final. Para um desenvolvedor, até que seria um processo mais fácil. Mas para uma pessoa que não seja muito técnica, poderia ser um pouco mais custoso aprender a mexer nessa ferramenta e tudo mais. Mas, na minha opinião, seria mais voltado para o desenvolvedor. Teria uma pequena curva de aprendizagem, mas não muito longa. Então acredito que iria ajudar. Às vezes, até com uma ferramenta auxiliar ali a pessoa faz o código, depois traz ele para cá para fazer uma checagem mesmo de vários casos, como do model checking que foi apresentado conceito. Então, acredito que sim. Ajudaria para o futuro, até para o desenvolvedor, seria algo bom uma melhoria na interface.
+
+Speaker1: Então você acredita que a dificuldade de aprendizado compensa em relação aos benefícios que você viu nessa proposta?
+
+Speaker2: Sim.
+
+Speaker1: E você considera que o modelo base que foi fornecido para você evoluir? Você considera que ele agilizou o processo de modelagem, que ele está adequado ao contexto de chatbot?
+
+Speaker2: Sim, bastante. Ele traz coisas bem mais básicas, até alguns outros conceitos mais complexos. Por exemplo, chamar um serviço externo utilizando uma outra API, fazer o processo de esperar e apenas depois desse processo, dessa resposta ser processada, prosseguir. Então é bom que já tem esse modelo que traz vários conceitos de condições, requisições externas, então acredito que sim. Ajudou bastante.
+
+Speaker1: E tendo em vista o que você aprendeu nesse experimento, você pensaria em utilizar UPPAAL e essa proposta para fazer a verificação de um fluxo caso você precisasse desenvolver um chatbot no futuro?
+
+Speaker2: Ah, sim. Quando um chatbot chega numa escala muito grande, realmente e é muito complexo de você saber esses casos de borda. Aqui no vídeo foi apresentado o conceito do deadlock, e existem outros conceitos mais completos que não foram apresentados, mas realmente esses casos de bordas são muito difíceis de serem testados em chatbot. Então acredito que é uma query relativamente fácil de ser feita que já eliminaria um caso de borda muito complexo. Então acredito que sim. Seria útil utilizar essa ferramenta para esses casos.
+
+Speaker1: Legal. Tem mais alguma coisa que você deseja comentar? Ou você já comentou tudo, todas as suas opiniões em relação à proposta?
+
+Speaker2: Tudo certo. Todas as opiniões já foram dadas.

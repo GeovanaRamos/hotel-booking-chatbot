@@ -1,0 +1,67 @@
+Speaker1: Participante, você aceitou ser gravado nessa entrevista?
+
+Speaker2: Sim.
+
+Speaker1: Você está ciente que sua participação é voluntária e anônima e os resultados dessa pesquisa poderão ser amplamente divulgados em meios eletrônicos ou impressos?
+
+Speaker2: Sim.
+
+Speaker1: Qual o seu nível de formação? 
+
+Speaker2: Superior completo. 
+
+Speaker1: E qual sua atividade principal hoje em dia, tanto de pesquisa, estudos, de desenvolvimento de software.
+
+Speaker2: Eu trabalho com pesquisa e também trabalho como desenvolvedor de software.
+
+Speaker1: Qual o seu tempo de experiência com desenvolvimento de software?
+
+Speaker2: Uns dez anos.
+
+Speaker1: Você considera sua experiência e conhecimento sobre chatbots seja básico, intermediário, avançado?
+
+Speaker2: Acredito que é avançado.
+
+Speaker1: Você considera sua experiência e conhecimento sobre o framework Rasa, básica, intermediária ou avançado.
+
+Speaker2: Também acredito que avançada.
+
+Speaker1: Relate um pouco sobre sua experiência com desenvolvimento de chatbot e quais projetos você participou.
+
+Speaker2: Eu trabalhei por dois anos com desenvolvimento de um chatbot de alta utilização. Ele tinha uns 800, não, 600 usuários por semana, focado em um objetivo específico que eu acredito que tenha sido completo, concluído. Esse chatbot passou por muitas evoluções internas, e foi tanto das versões das ferramentas quanto da infraestrutura. Então foi um projeto bem completo de implantação de manutenção, evolução de software, foi bastante coisa. E aí dele surgiram pesquisas e relatórios técnicos também para algumas outras áreas lá da empresa. Então, bastante experiência com isso.
+
+Speaker1: E outros projetos pessoais sobre chatbot?
+
+Speaker2: Eu trabalhei também em alguns projetos na faculdade, alguns fazendo protótipos e outro para implementar um chatbot para atendimento de alunos em uma matéria para resolver dúvidas de alunos de um professor meu, eu trabalhei em conjunto com ele. Então vários cantos.
+
+Speaker1: Relate como foi a experiência de fazer o modelo UPPAAL para o chatbot de coworking, abordando as dificuldades e o que você viu de positivo nesse projeto.
+
+Speaker2: Então, eu acho que tem um potencial muito grande, porque enquanto eu estava desenvolvendo, eu achei erros que eu faria e provavelmente repetiria depois. Como por exemplo, eu pensei aqui no número e esse número não encaixa com outro número que deveria ficar com ele. Então, é uma verificação lógica da coisa. Isso para uma das guards da ferramenta, então tem muito potencial. E eu acho que dá para você pensar e ter uma visualização de o que vai ser esse chatbot quando completo. É algo que sempre faltou. As ferramentas de design que a gente tem, por exemplo, tem que montar textos na mão, em um papel, ou em uma ferramenta. São ferramentas, são coisas que são um tanto incompletas, porque elas dependem da subjetividade de alguém ficar ali olhando e pensando. Não tem como um computador verificar tudo para mim. Então, acho que esse é um avanço nesse sentido. Uma das dificuldades que tem na ferramenta é que a usabilidade dela ainda não é boa. Eu acho que ela ainda está um pouco em um nicho, mas que talvez com evoluções, ou então com uma outra versão ou um novo programa que utilize os mesmos conceitos e isso pode ser resolvido e transformado em um produto comercial, por exemplo. Então tem muita utilidade. Só que a usabilidade ainda não chegou no ponto que seria mais prático fazer isso e abandonar todas as outras ferramentas.
+
+Speaker1: Legal, vamos para a próxima. Foi muito difícil para você compreender o modelo para o contexto de reserva de hotel? Sim ou não?
+
+Speaker2: Na verdade, não. Tem uma dificuldade no começo de pegar como a ferramenta funciona e como ela anota as coisas. Mas isso eu acredito que teria em qualquer outro tipo de ferramenta, qualquer outra coisa, uma dificuldade inicial. Depois que pega o jeito e depois que você entende os símbolos e como eles estão organizados, como o estado muda de um ponto para outro, eu acho que é bem prático de olhar, bater o olho e entender.
+
+Speaker1: Sendo que você compreendeu o modelo de reservas, você acredita que ele está adequado em relação aos requisitos? E você também acredita que o chatbot Rasa resultante é correspondente ao modelo que foi feito?
+
+Speaker2: Acredito que sim, consegui olhar os requisitos e ver partes no modelo que correspondiam. Olhando os arquivos do Rasa pude ver muitas partes que também estavam equivalentes ao modelo, o que me deu uma confiança em relação ao chatbot resultante estar de acordo com os requisitos.
+
+Speaker1: Vamos seguir. Você acredita que o model checking via UPPAAL pode ser um aliado no processo de desenvolvimento de chatbots?
+
+Speaker2: Sim.
+
+Speaker1: Se sim, em quais citações e contextos de desenvolvimento você acha que ele seria mais útil ou menos útil? Você acha que a dificuldade do aprendizado compensa em relação aos benefícios?
+
+Speaker2: Eu acredito que ele tem uma ótima posição no começo do projeto. Então, quando você está ali sentado e vendo o que você vai fazer, tenho uma ideia geral, mas eu não sei os passos e não sei como implementá-los, como começar, o que seria mais útil, o que eu tenho que ter fixo nesse projeto. Eu acredito que converter um chatbot de volta para o UPPAAL e ficar trabalhando com os dois ao mesmo tempo não seria tão vantajoso, a não ser que surgisse uma ferramenta que fizesse isso automaticamente. Talvez para desenvolvimento de novos módulos ou então de uma nova funcionalidade dentro do bot, seja uma boa opção para uso mais para frente no processo de desenvolvimento. Mas acho que ele tem uma utilidade grande. A única questão que eu levanto novamente é a usabilidade. Ela tem que melhorar. E a dificuldade compensa, até porque não foi tão complexo começar a desenvolver com ele. Eu acredito que assusta um pouco no começo, mas depois dá para ir pegando o jeito. Não acho que seja tão difícil.
+
+Speaker1: Você considera que o modelo base que foi fornecido para você fazer o chatbot, que ele está adequado e que ele agilizou o processo de modelagem do seu chatbot? Ou você utilizaria um modelo próprio ou qualquer outro modelo?
+
+Speaker2: Eu acho que ele auxiliou. Eu não sei se num futuro para um outro projeto usaria o mesmo modelo. Mas eu sei que ele deu um pontapé inicial, permitiu entender a ferramenta. E eu acho que se eu fosse usar um outro modelo, talvez seria inclusive baseado nesse que foi proposto. Foi a base atual. Então, seria a base de uma outra base, porque adapta as regras de negócio e adapta para as coisas necessárias. Então, achei muito útil. Mas provavelmente precisaria fazer alguma evolução para aplicação em outras situações.
+
+Speaker1: Beleza. Última pergunta. Você pensaria em utilizar o UPPAAL para fazer a verificação do seu fluxo de chatbot caso você precisasse desenvolver um chatbot no futuro?
+
+Speaker2: Sim. Acho que poderia ser utilizado. No momento, em conjunto com outras ferramentas, mas ele seria um dos candidatos, uma das escolhas para começar um chatbot.
+
+Speaker1: E por fim, tem algo mais que você desejar comentar que eu não tem abordado em alguma pergunta.
+
+Speaker2: Acho que não. Acho que não.
