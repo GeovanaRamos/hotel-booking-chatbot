@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+	<declaration>// Place global declarations here.
+
+// CONSTANTS
+const int I = 5;  
+const int S = 1;  
+const int R = 2;  
+
+// USER
+urgent chan init_chat, end_chat, message;
+
+//NLU
+urgent chan intent[I];
+// is_text, is_number, is_date, is_email, is_yes, is_no
+
+// DIALOGUE MANAGER 
+//urgent chan find_rooms;
+urgent chan call_service[S];
+int n_adults = 0, n_children = 0, n_rooms = 0;
+int a_read = 0, c_read = 0;
+
+//MANAGER
+urgent chan response[S][R];
+//no_vacancy, rooms_ok;
+int n_available;
+bool vacancy;</declaration>
+	<template>
+		<name x="5" y="5">DialogueManager</name>
+		<declaration>// Place local declarations here.
+
+
+
+</declaration>
+		<location id="id0" x="-2120" y="-336">
+			<name x="-2144" y="-368">goodbye</name>
+		</location>
+		<location id="id1" x="-1952" y="-336">
+			<name x="-1962" y="-366">ok</name>
+		</location>
+		<location id="id2" x="-1736" y="-8">
+			<committed/>
+		</location>
+		<location id="id3" x="-1600" y="-256">
+			<committed/>
+		</location>
+		<location id="id4" x="-1736" y="-256">
+			<name x="-1776" y="-288">guest_X_id</name>
+		</location>
+		<location id="id5" x="-1736" y="-104">
+			<name x="-1720" y="-112">guest_X_age</name>
+		</location>
+		<location id="id6" x="-1992" y="-128">
+			<committed/>
+		</location>
+		<location id="id7" x="-2288" y="-64">
+			<name x="-2312" y="-48">adjust</name>
+		</location>
+		<location id="id8" x="-1952" y="-64">
+			<name x="-1976" y="-48">waiting</name>
+			<committed/>
+		</location>
+		<location id="id9" x="-1400" y="-256">
+			<name x="-1448" y="-288">done</name>
+		</location>
+		<location id="id10" x="-1848" y="-256">
+			<name x="-1936" y="-288">guest_X_name</name>
+		</location>
+		<location id="id11" x="-1952" y="-256">
+			<name x="-2024" y="-264">proceed</name>
+		</location>
+		<location id="id12" x="-2088" y="-256">
+			<name x="-2112" y="-288">rooms</name>
+		</location>
+		<location id="id13" x="-2240" y="-256">
+			<name x="-2264" y="-288">children</name>
+		</location>
+		<location id="id14" x="-2384" y="-256">
+			<name x="-2408" y="-288">adults</name>
+		</location>
+		<location id="id15" x="-2480" y="-256">
+			<name x="-2504" y="-288">check_out</name>
+		</location>
+		<location id="id16" x="-2592" y="-256">
+			<name x="-2616" y="-288">check_in</name>
+		</location>
+		<location id="id17" x="-2704" y="-256">
+		</location>
+		<init ref="id17"/>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id16"/>
+			<label kind="synchronisation" x="-2496" y="-160">intent[0]?</label>
+		</transition>
+		<transition>
+			<source ref="id9"/>
+			<target ref="id1"/>
+			<nail x="-1400" y="-336"/>
+		</transition>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id0"/>
+		</transition>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id17"/>
+			<label kind="synchronisation" x="-2368" y="-352">end_chat?</label>
+			<label kind="assignment" x="-2408" y="-368">a_read:=0,c_read:=0</label>
+			<nail x="-2704" y="-336"/>
+		</transition>
+		<transition>
+			<source ref="id11"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="-2024" y="-304">intent[2]?</label>
+		</transition>
+		<transition>
+			<source ref="id17"/>
+			<target ref="id16"/>
+			<label kind="synchronisation" x="-2688" y="-256">init_chat?</label>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id2"/>
+			<label kind="synchronisation" x="-1736" y="-72">intent[1]?</label>
+			<label kind="assignment" x="-1736" y="-56">c_read:=c_read+1</label>
+		</transition>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id9"/>
+			<label kind="guard" x="-1584" y="-256">a_read==n_adults &amp;&amp;
+n_children==0</label>
+		</transition>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id10"/>
+			<label kind="guard" x="-1832" y="-320">a_read&lt;n_adults || n_children&gt;0</label>
+			<nail x="-1648" y="-304"/>
+			<nail x="-1792" y="-304"/>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id9"/>
+			<label kind="guard" x="-1712" y="-8">c_read==n_children</label>
+			<nail x="-1400" y="-8"/>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id10"/>
+			<label kind="guard" x="-1888" y="-8">c_read&lt;n_children</label>
+			<nail x="-1848" y="-8"/>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id3"/>
+			<label kind="guard" x="-1720" y="-240">a_read&lt;n_adults</label>
+			<label kind="synchronisation" x="-1712" y="-256">intent[1]?</label>
+			<label kind="assignment" x="-1720" y="-224">a_read:=a_read+1</label>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id5"/>
+			<label kind="guard" x="-1736" y="-168">a_read==n_adults &amp;&amp;
+n_children&gt;0</label>
+			<label kind="synchronisation" x="-1736" y="-184">intent[1]?</label>
+		</transition>
+		<transition>
+			<source ref="id10"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="-1832" y="-256">intent[4]?</label>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id8"/>
+			<label kind="synchronisation" x="-2056" y="-104">call_service[0]!</label>
+		</transition>
+		<transition>
+			<source ref="id8"/>
+			<target ref="id11"/>
+			<label kind="synchronisation" x="-1952" y="-176">response[0][0]?</label>
+		</transition>
+		<transition>
+			<source ref="id12"/>
+			<target ref="id6"/>
+			<label kind="select" x="-2096" y="-184">r: int[1,4]</label>
+			<label kind="synchronisation" x="-2120" y="-200">intent[1]?</label>
+			<label kind="assignment" x="-2096" y="-168">n_rooms:=r</label>
+		</transition>
+		<transition>
+			<source ref="id15"/>
+			<target ref="id14"/>
+			<label kind="synchronisation" x="-2464" y="-256">intent[0]?</label>
+		</transition>
+		<transition>
+			<source ref="id8"/>
+			<target ref="id7"/>
+			<label kind="synchronisation" x="-2208" y="-88">response[0][1]?</label>
+		</transition>
+		<transition>
+			<source ref="id13"/>
+			<target ref="id12"/>
+			<label kind="select" x="-2216" y="-240">c : int[0,6]</label>
+			<label kind="synchronisation" x="-2216" y="-256">intent[1]?</label>
+			<label kind="assignment" x="-2224" y="-224">n_children:=c</label>
+		</transition>
+		<transition>
+			<source ref="id11"/>
+			<target ref="id10"/>
+			<label kind="synchronisation" x="-1936" y="-248">intent[3]?</label>
+		</transition>
+		<transition>
+			<source ref="id14"/>
+			<target ref="id13"/>
+			<label kind="select" x="-2352" y="-240">a : int[1,4]</label>
+			<label kind="synchronisation" x="-2360" y="-256">intent[1]?</label>
+			<label kind="assignment" x="-2344" y="-224">n_adults:=a</label>
+		</transition>
+		<transition>
+			<source ref="id16"/>
+			<target ref="id15"/>
+			<label kind="synchronisation" x="-2568" y="-256">intent[0]?</label>
+		</transition>
+	</template>
+	<template>
+		<name>NLU</name>
+		<declaration>
+
+</declaration>
+		<location id="id18" x="-176" y="-16">
+			<name x="-200" y="8">classification</name>
+		</location>
+		<location id="id19" x="-616" y="-16">
+		</location>
+		<init ref="id19"/>
+		<transition>
+			<source ref="id18"/>
+			<target ref="id19"/>
+			<label kind="synchronisation" x="-416" y="-152">intent[3]!</label>
+			<nail x="-192" y="-128"/>
+			<nail x="-584" y="-128"/>
+		</transition>
+		<transition>
+			<source ref="id18"/>
+			<target ref="id19"/>
+			<label kind="synchronisation" x="-416" y="-176">intent[4]!</label>
+			<nail x="-176" y="-160"/>
+			<nail x="-600" y="-160"/>
+		</transition>
+		<transition>
+			<source ref="id18"/>
+			<target ref="id19"/>
+			<label kind="synchronisation" x="-416" y="-120">intent[2]!</label>
+			<nail x="-200" y="-104"/>
+			<nail x="-584" y="-104"/>
+		</transition>
+		<transition>
+			<source ref="id18"/>
+			<target ref="id19"/>
+			<label kind="synchronisation" x="-416" y="-88">intent[1]!</label>
+			<nail x="-224" y="-72"/>
+			<nail x="-568" y="-72"/>
+		</transition>
+		<transition>
+			<source ref="id18"/>
+			<target ref="id19"/>
+			<label kind="synchronisation" x="-416" y="-64">intent[0]!</label>
+			<nail x="-224" y="-48"/>
+			<nail x="-576" y="-48"/>
+		</transition>
+		<transition>
+			<source ref="id19"/>
+			<target ref="id18"/>
+			<label kind="synchronisation" x="-424" y="48">message?</label>
+			<nail x="-392" y="40"/>
+		</transition>
+	</template>
+	<template>
+		<name>User</name>
+		<location id="id20" x="-112" y="-16">
+			<name x="-160" y="-56">chatting</name>
+		</location>
+		<location id="id21" x="-280" y="-16">
+		</location>
+		<init ref="id21"/>
+		<transition>
+			<source ref="id20"/>
+			<target ref="id21"/>
+			<label kind="synchronisation" x="-232" y="40">end_chat!</label>
+			<nail x="-112" y="40"/>
+			<nail x="-280" y="40"/>
+		</transition>
+		<transition>
+			<source ref="id20"/>
+			<target ref="id20"/>
+			<label kind="synchronisation" x="-48" y="-16">message!</label>
+			<nail x="-56" y="40"/>
+			<nail x="-56" y="-64"/>
+		</transition>
+		<transition>
+			<source ref="id21"/>
+			<target ref="id20"/>
+			<label kind="synchronisation" x="-240" y="-32">init_chat!</label>
+		</transition>
+	</template>
+	<template>
+		<name>RoomsManager</name>
+		<location id="id22" x="-1248" y="-208">
+			<name x="-1240" y="-240">verification</name>
+		</location>
+		<location id="id23" x="-1472" y="-208">
+		</location>
+		<init ref="id23"/>
+		<transition>
+			<source ref="id22"/>
+			<target ref="id23"/>
+			<label kind="guard" x="-1424" y="-112">n_available&gt;=n_rooms</label>
+			<label kind="synchronisation" x="-1392" y="-144">response[0][0]!</label>
+			<label kind="assignment" x="-1408" y="-128">vacancy:=true</label>
+			<nail x="-1304" y="-144"/>
+			<nail x="-1416" y="-144"/>
+		</transition>
+		<transition>
+			<source ref="id22"/>
+			<target ref="id23"/>
+			<label kind="guard" x="-1432" y="-320">n_available&lt;n_rooms</label>
+			<label kind="synchronisation" x="-1400" y="-288">response[0][1]!</label>
+			<label kind="assignment" x="-1416" y="-304">vacancy:=false</label>
+			<nail x="-1304" y="-264"/>
+			<nail x="-1416" y="-264"/>
+		</transition>
+		<transition>
+			<source ref="id23"/>
+			<target ref="id22"/>
+			<label kind="select" x="-1384" y="-208">r: int[0,4]</label>
+			<label kind="synchronisation" x="-1392" y="-224">call_service[0]?</label>
+			<label kind="assignment" x="-1400" y="-192">n_available:=r</label>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+dm = DialogueManager();
+nlu = NLU();
+user = User();
+rm = RoomsManager();
+
+// List one or more processes to be composed into a system.
+system dm, nlu, user, rm;</system>
+	<queries>
+		<query>
+			<formula>A[] dm.guest_X_age imply c_read&lt;n_children</formula>
+			<comment>Always the fact that the chatbot is asking for the guest age implies that the number of children read is less than the number of children requested.</comment>
+		</query>
+		<query>
+			<formula>A[] dm.done imply (c_read==n_children &amp;&amp; a_read==n_adults)</formula>
+			<comment>Always the fact that the chatbot finished the reservation implies that the number of children and adults read is equal to the number of children and adults requested, respectively.</comment>
+		</query>
+		<query>
+			<formula>dm.guest_X_name --&gt; dm.done</formula>
+			<comment>Whether the chatbot starts collecting guest names, eventually it will finish the reservation.</comment>
+		</query>
+		<query>
+			<formula>(dm.waiting &amp;&amp; n_rooms&gt;n_available) --&gt; dm.adjust</formula>
+			<comment>Whether the chatbot is waiting for the rooms manager response and the number of rooms requested is greater than the number of rooms available, 
+eventually the chatbot will ask the user to adjust the reservation data.</comment>
+		</query>
+		<query>
+			<formula>A[] dm.proceed imply n_available&gt;=n_rooms</formula>
+			<comment>Always the fact that the chatbot asked to proceed with the reservation implies that the number of rooms available is greater or equal than the number of rooms requested.</comment>
+		</query>
+		<query>
+			<formula>A[] dm.adjust imply (n_rooms &gt; n_available)</formula>
+			<comment>Always the fact that the chatbot asked for adjusting reservation data implies that the number of requested rooms is less than the number of available rooms.</comment>
+		</query>
+		<query>
+			<formula>A[] dm.adjust imply !vacancy </formula>
+			<comment>Always the fact that the chatbot asked for adjusting reservation data implies that there are no rooms available.</comment>
+		</query>
+		<query>
+			<formula>A[] dm.proceed imply vacancy</formula>
+			<comment>Always the fact that the chatbot asked to proceed with the reservation implies that there are rooms available.</comment>
+		</query>
+		<query>
+			<formula>rm.verification--&gt; (dm.proceed || dm.adjust)</formula>
+			<comment>Whether the rooms manager is verifying for room availability, eventually the chatbot will ask if it can proceed with the reservation or ask the user to adjust the reservation data.</comment>
+		</query>
+		<query>
+			<formula>A[] dm.done imply (n_rooms &gt; 0 &amp;&amp; n_rooms &lt;= 4)</formula>
+			<comment>Always the fact that the chatbot finished the reservation implies that the user informed between 1 and 4 rooms.</comment>
+		</query>
+		<query>
+			<formula>A[] dm.done imply (n_children &gt;= 0 &amp;&amp; n_children &lt;= 6)</formula>
+			<comment>Always the fact that the chatbot finished the reservation implies that the user informed between 0 and 6 children guests.</comment>
+		</query>
+		<query>
+			<formula>A[] dm.done imply (n_adults &gt; 0 &amp;&amp; n_adults &lt;= 4)
+</formula>
+			<comment>Always the fact that the chatbot finished the reservation implies that the user informed between 1 and 4 adult guests.</comment>
+		</query>
+		<query>
+			<formula>A&lt;&gt; dm.check_out</formula>
+			<comment>Eventually, the chatbot will ask for a check-out date. </comment>
+		</query>
+		<query>
+			<formula>A&lt;&gt; dm.check_in</formula>
+			<comment>Eventually, the chatbot will ask for a check-in date.</comment>
+		</query>
+		<query>
+			<formula>A[] not deadlock</formula>
+			<comment></comment>
+		</query>
+	</queries>
+</nta>

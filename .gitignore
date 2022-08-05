@@ -1,0 +1,9 @@
+venv/
+
+rasa_chatbot/results/
+rasa_chatbot/models/
+rasa_chatbot/.rasa/ 
+rasa_chatbot/story_graph.dot
+graph.html
+
+__pycache__/

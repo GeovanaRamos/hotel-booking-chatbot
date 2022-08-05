@@ -1,0 +1,68 @@
+version: "3.1"
+
+responses:
+# responses for main
+  utter_welcome:
+  - text: "Hello! Nice to meet you. Let's book you a room!"
+  utter_check_in:
+  - text: "First, tell me the check-in date."
+  utter_check_out:
+  - text: "Now, tell me the check-out date."
+  utter_adults:
+  - text: "How many adult guests are coming? Between 1 and 4."
+  utter_children:
+  - text: "How many child guests are coming? Between 0 and 6."
+  utter_rooms:
+  - text: "How many rooms do you want to book? Between 1 and 4"
+  utter_number_invalid:
+  - text: "Sorry, but it seems that you did not inform a valid number. Let's try again!"
+  utter_calling_manager:
+  - text: "Let me check if there are rooms available. Just a sec!"
+  utter_vacancy:
+  - text: "Done! We have rooms available. Do you wish to proceed?"
+  utter_ok: 
+  - text: "No problem!" 
+  utter_goodbye:
+  - text: "Just call me if you need me again ;)"
+  utter_adjust:
+  - text: "I'm so sorry, but there aren't enough rooms on these dates. Please, inform a new check-in date so I can find available rooms for you."
+  utter_guests_data:
+  - text: "Nice! Now I need to collect the information of all guests. Just follow along my instructions."
+  utter_ask_guest_name:
+  - text: "Inform the name of {guest_type} guest {guest_number}"
+  - text: "Tell me the name of {guest_type} guest {guest_number}"
+  - text: "I need the name of {guest_type} guest {guest_number}"
+  - text: "What's the name of {guest_type} guest {guest_number}?"
+  utter_ask_guest_id:
+  - text: "Inform the ID number of {guest_type} guest {guest_number}"
+  - text: "Tell me the ID number of {guest_type} guest {guest_number}"
+  - text: "I need the ID number of {guest_type} guest {guest_number}"
+  - text: "What's the ID number of {guest_type} guest {guest_number}?"
+  utter_ask_guest_age:
+  - text: "Inform the age of {guest_type} guest {guest_number}"
+  - text: "Tell me the age of {guest_type} guest {guest_number}"
+  - text: "I need the age of {guest_type} guest {guest_number}"
+  - text: "What's the age of {guest_type} guest {guest_number}?"
+  utter_done:
+  - text: "Reservation finished! See the details below."
+# responses for faq
+  utter_faq/ask_who_is_it:
+  - text: "I am Hobot, a virtual assistant to help you booking rooms in the PrivateCloud Hotel."
+  utter_faq/ask_can_you_help:
+  - text: "I can make reservations for you in the PrivateCloud Hotel."
+  utter_faq/ask_how_doing:
+  - text: "I am happy to be helping you with your reservations."
+  utter_faq/ask_where_is_hotel:
+  - text: "The hotel is located in the clouds."
+  utter_faq/ask_guests_in_room:
+  - text: "Our rooms accommodate up to 4 people. Just ask for additional mattresses upon your arrival."
+  utter_faq/ask_room_rate:
+  - text: "All our rooms have a rate of $70 per night during the week and $90 on weekends."
+  utter_faq/ask_room_types:
+  - text: "We have only one type of room. They all have two king-sized beds, TV, AC, and a private bathroom."
+
+# reponses for fallback
+  utter_please_rephrase:
+  - text: "NLU fallback"
+  utter_default:
+  - text: "CORE fallback"

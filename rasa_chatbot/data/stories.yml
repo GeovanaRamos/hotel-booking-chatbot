@@ -1,0 +1,89 @@
+version: "3.1"
+
+stories:
+
+- story: start conversation
+  steps:
+  - intent: init_chat
+  - action: utter_welcome    
+  - action: utter_check_in
+
+- story: ask to adjust reservation
+  steps:
+  - intent: inform_date
+  - action: action_set_check_in
+  - action: utter_check_out
+  - intent: inform_date
+  - action: action_set_check_out
+  - action: utter_adults
+  - intent: inform_number 
+  - action: action_set_adults
+  - action: utter_children
+  - intent: inform_number
+  - action: action_set_children
+  - action: utter_rooms
+  - intent: inform_number
+  - action: action_set_rooms
+  - action: utter_calling_manager
+  - action: action_call_manager
+  - slot_was_set:
+    - vacancy: false #
+  - action: utter_adjust
+# here we expect that the model will understand that 
+# the story loops back when inform_date is received again
+
+- story: Give up when there are rooms available
+  steps:
+  - intent: inform_date
+  - action: action_set_check_in
+  - action: utter_check_out
+  - intent: inform_date
+  - action: action_set_check_out
+  - action: utter_adults
+  - intent: inform_number 
+  - action: action_set_adults
+  - action: utter_children
+  - intent: inform_number
+  - action: action_set_children
+  - action: utter_rooms
+  - intent: inform_number
+  - action: action_set_rooms
+  - action: utter_calling_manager
+  - action: action_call_manager
+  - slot_was_set:
+    - vacancy: true #
+  - action: utter_vacancy 
+  - intent: deny #
+  - action: utter_ok
+  - action: utter_goodbye
+
+- story: Proceed with reservation
+  steps:
+  - intent: inform_date
+  - action: action_set_check_in
+  - action: utter_check_out
+  - intent: inform_date
+  - action: action_set_check_out
+  - action: utter_adults
+  - intent: inform_number 
+  - action: action_set_adults
+  - action: utter_children
+  - intent: inform_number
+  - action: action_set_children
+  - action: utter_rooms
+  - intent: inform_number
+  - action: action_set_rooms
+  - action: utter_calling_manager
+  - action: action_call_manager
+  - slot_was_set:
+    - vacancy: true #
+  - action: utter_vacancy 
+  - intent: affirm #
+  - action: utter_guests_data
+  - action: guests_form
+  - active_loop: guests_form
+# here we activate the form and let the rules handle
+# the loop until all guests are read. See rules
+
+
+

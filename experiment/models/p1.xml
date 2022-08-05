@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+	<declaration>// Place global declarations here.
+
+// CONSTANTS
+const int I = 3;  // adjust to right number of intents (at least one)
+const int S = 1;  // adjust to right number of services (can be zero)
+const int R = 2;  // adjust to max number of responses from each service ( at least one OR comment if S=0)
+
+// USER
+urgent chan init_chat, end_chat, message;
+
+//NLU
+urgent chan intent[I]; 
+
+// DIALOGUE MANAGER 
+urgent chan call_service[S];
+// int variable; // declare as many variables as necessary  (int | bool | double | string)
+
+//SERVICE API (comment section if S=0)
+urgent chan response[S][R];
+// int variable; // declare as many variables as necessary  (int | bool | double | string)
+bool avaliable = true;</declaration>
+	<template>
+		<name x="5" y="5">NLU</name>
+		<declaration>// Place local declarations here.
+</declaration>
+		<location id="id0" x="296" y="-40">
+			<name x="264" y="-24">classification</name>
+		</location>
+		<location id="id1" x="64" y="-40">
+		</location>
+		<init ref="id1"/>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="144" y="-128">intent[2]!</label>
+			<nail x="256" y="-112"/>
+			<nail x="96" y="-112"/>
+		</transition>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="144" y="-104">intent[1]!</label>
+			<nail x="256" y="-88"/>
+			<nail x="96" y="-88"/>
+		</transition>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="144" y="-80">intent[0]!</label>
+			<nail x="256" y="-64"/>
+			<nail x="96" y="-64"/>
+		</transition>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="152" y="-8">message?</label>
+			<nail x="184" y="-16"/>
+		</transition>
+	</template>
+	<template>
+		<name x="5" y="5">ServiceAPI</name>
+		<declaration>// Place local declarations here.
+</declaration>
+		<location id="id2" x="296" y="-40">
+			<name x="312" y="-48">verification</name>
+		</location>
+		<location id="id3" x="64" y="-40">
+		</location>
+		<init ref="id3"/>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id3"/>
+			<label kind="synchronisation" x="128" y="-136">response[0][1]!</label>
+			<label kind="assignment" x="128" y="-160">avaliable:=true</label>
+			<nail x="256" y="-112"/>
+			<nail x="96" y="-112"/>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id3"/>
+			<label kind="synchronisation" x="136" y="40">response[0][0]!</label>
+			<label kind="assignment" x="128" y="56">avaliable:=false</label>
+			<nail x="256" y="24"/>
+			<nail x="104" y="24"/>
+		</transition>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id2"/>
+			<label kind="synchronisation" x="136" y="-56">call_service[0]?</label>
+			<nail x="184" y="-40"/>
+		</transition>
+	</template>
+	<template>
+		<name>User</name>
+		<location id="id4" x="-112" y="-16">
+			<name x="-160" y="-56">chatting</name>
+		</location>
+		<location id="id5" x="-280" y="-16">
+		</location>
+		<init ref="id5"/>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id5"/>
+			<label kind="synchronisation" x="-232" y="40">end_chat!</label>
+			<nail x="-112" y="40"/>
+			<nail x="-280" y="40"/>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="-48" y="-16">message!</label>
+			<nail x="-56" y="40"/>
+			<nail x="-56" y="-64"/>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="-240" y="-32">init_chat!</label>
+		</transition>
+	</template>
+	<template>
+		<name>DialogueManager</name>
+		<location id="id6" x="216" y="-208">
+			<name x="200" y="-192">done</name>
+		</location>
+		<location id="id7" x="-40" y="-160">
+			<name x="-72" y="-144">new_search</name>
+		</location>
+		<location id="id8" x="-464" y="-192">
+			<name x="-480" y="-232">hour</name>
+		</location>
+		<location id="id9" x="128" y="-208">
+			<name x="104" y="-248">goodbye</name>
+		</location>
+		<location id="id10" x="-568" y="-192">
+			<name x="-584" y="-232">date</name>
+		</location>
+		<location id="id11" x="-40" y="-256">
+			<name x="-64" y="-296">confirm</name>
+		</location>
+		<location id="id12" x="-216" y="-192">
+			<name x="-248" y="-232">waiting</name>
+			<committed/>
+		</location>
+		<location id="id13" x="-368" y="-192">
+			<committed/>
+		</location>
+		<location id="id14" x="-672" y="-192">
+			<name x="-696" y="-232">place_type</name>
+		</location>
+		<location id="id15" x="-784" y="-192">
+		</location>
+		<init ref="id15"/>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id15"/>
+			<label kind="synchronisation" x="-336" y="-336">end_chat?</label>
+			<nail x="216" y="-320"/>
+			<nail x="-784" y="-320"/>
+			<nail x="-784" y="-224"/>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id9"/>
+			<label kind="synchronisation" x="24" y="-176">intent[2]?</label>
+		</transition>
+		<transition>
+			<source ref="id11"/>
+			<target ref="id7"/>
+			<label kind="synchronisation" x="16" y="-264">intent[1]?</label>
+		</transition>
+		<transition>
+			<source ref="id9"/>
+			<target ref="id6"/>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id14"/>
+			<label kind="synchronisation" x="-416" y="-48">intent[2]?</label>
+			<nail x="-40" y="-56"/>
+			<nail x="-672" y="-56"/>
+		</transition>
+		<transition>
+			<source ref="id10"/>
+			<target ref="id8"/>
+			<label kind="synchronisation" x="-552" y="-176">intent[0]?</label>
+		</transition>
+		<transition>
+			<source ref="id11"/>
+			<target ref="id9"/>
+			<label kind="synchronisation" x="-32" y="-216">intent[1]?</label>
+		</transition>
+		<transition>
+			<source ref="id8"/>
+			<target ref="id13"/>
+			<label kind="synchronisation" x="-456" y="-176">intent[0]?</label>
+		</transition>
+		<transition>
+			<source ref="id12"/>
+			<target ref="id7"/>
+			<label kind="synchronisation" x="-200" y="-168">response[0][0]?</label>
+		</transition>
+		<transition>
+			<source ref="id14"/>
+			<target ref="id10"/>
+			<label kind="synchronisation" x="-656" y="-176">intent[0]?</label>
+			<nail x="-656" y="-192"/>
+		</transition>
+		<transition>
+			<source ref="id12"/>
+			<target ref="id11"/>
+			<label kind="synchronisation" x="-192" y="-256">response[0][1]?</label>
+		</transition>
+		<transition>
+			<source ref="id13"/>
+			<target ref="id12"/>
+			<label kind="synchronisation" x="-344" y="-184">call_service[0]!</label>
+		</transition>
+		<transition>
+			<source ref="id15"/>
+			<target ref="id14"/>
+			<label kind="synchronisation" x="-768" y="-184">init_chat?</label>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+dm = DialogueManager();
+nlu = NLU();
+user = User();
+es = ServiceAPI(); // comment if S=0
+// add more external services if necessary
+
+// List one or more processes to be composed into a system.
+system dm, nlu, user, es; // remove es if S=0</system>
+	<queries>
+		<query>
+			<formula>A[] es.verification imply dm.waiting</formula>
+			<comment>In all paths (A), all locations ([]) with es.verification (when external service template is in location verification) imply dm.waiting (the dm template is in location waiting). </comment>
+		</query>
+		<query>
+			<formula>A&lt;&gt; dm.done</formula>
+			<comment>In all paths (A), at least one location (&lt;&gt;) is dm.done (location done from the dm template). </comment>
+		</query>
+		<query>
+			<formula>A[] not deadlock</formula>
+			<comment>In all paths (A), all locations ([]) are free of deadlocks.</comment>
+		</query>
+	</queries>
+</nta>

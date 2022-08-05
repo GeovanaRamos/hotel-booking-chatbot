@@ -1,0 +1,41 @@
+version: "3.1"
+
+rules:
+- rule: Ask the user to rephrase whenever they send a message with low NLU confidence
+  steps:
+  - intent: nlu_fallback
+  - action: utter_please_rephrase
+
+- rule: Deactivate guests form
+  condition:
+  - active_loop: guests_form
+  steps:
+    - action: guests_form
+    - active_loop: null   
+    - slot_was_set:
+      - requested_slot: null          
+    - action: action_check_guests
+  wait_for_user_input: false
+
+- rule: Loop back guests form if there are guests to be read still
+  steps:
+  - action: action_check_guests
+  - slot_was_set:
+    - continue_guests: true
+  - action: guests_form
+  - active_loop: guests_form
+
+- rule: Finish reservation when all guests were read
+  steps:
+  - action: action_check_guests
+  - slot_was_set:
+    - continue_guests: false
+  - action: utter_done
+  - action: action_utter_reservation_info
+  - action: action_restart
+
+
+- rule: Respond to FAQs
+  steps:
+  - intent: faq
+  - action: utter_faq
